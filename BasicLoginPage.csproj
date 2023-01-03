@@ -11,4 +11,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.1" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Pages\Login.cs">
+      <DependentUpon>Login.razor</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\fonts" />
+  </ItemGroup>
+
 </Project>

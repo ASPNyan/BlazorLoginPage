@@ -1,0 +1,90 @@
+﻿@font-face {
+    font-family: Rubik-Regular;
+    src: local('Rubik Regular'), local('Rubik-Regular'),
+    url('fonts/Rubik-Regular.woff2') format('woff2'),
+    url('fonts/Rubik-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+#ColourBlindnessButton {
+    position: absolute;
+    width: 3vmax;
+    height: 3vmax;
+    border-radius: 10%;
+    cursor: pointer;
+    top: 1vmin;
+    right: 1vmin;
+    background: var(--Cool-Primary);
+    border: 0.3vmin solid var(--Cool-Secondary);
+    box-shadow: 0 0 0.5vmin 0.5vmin var(--Cool-Secondary);
+    transition: all 300ms ease-in-out;
+}
+
+.ColourBlindnessIcon {
+    position: absolute;
+    width: 98%;
+    height: 98%;
+    top: 1.5%;
+    left: 1.5%;
+    border-radius: 10%;
+    cursor: pointer;
+
+    object-fit: scale-down;
+    object-position: center;
+    transition: all 300ms ease-in-out;
+}
+.ColourBlindnessIcon:nth-of-type(2) {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    opacity: 0;
+}
+
+#ColourblindMenu {
+    position: relative;
+    height: 60vmin;
+    width: 37.082039325vmin;
+    top: calc(4vmax + 1vmin);
+    margin-left: calc(-18.5410196625vmin + 1vmax);
+    border-radius: 3vmin;
+    background-color: var(--Cool-Primary);
+    transition: all 300ms ease-in-out, opacity 200ms ease-in-out;
+    z-index: 100;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    flex-flow: column nowrap;
+    cursor: default;
+    justify-content: space-around;
+    padding: 0 1vmin;
+}
+
+#ColourblindMenu > .ColourBlindnessWrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    height: auto;
+    align-items: center;
+}
+
+.ColourBlindnessWrapper > .ColourBlindnessText {
+    position: absolute;
+    font-family: "Rubik-Regular", sans-serif;
+}
+
+.ColourBlindnessWrapper > .ColourBlindnessToggle {
+    justify-self: flex-end;
+    height: 5vmin;
+    width: 5vmin;
+    margin-left: auto;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0.5vmin solid var(--Cool-Secondary);
+    box-shadow: 0 0 0 0.3vmin var(--Cool-Primary) inset;
+    box-sizing: border-box;
+    background-color: var(--Cool-Secondary);
+    transition: background-color 300ms ease-in-out;
+}

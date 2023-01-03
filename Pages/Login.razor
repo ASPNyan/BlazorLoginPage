@@ -1,0 +1,152 @@
+﻿@page "/"
+
+<PageTitle>Login</PageTitle>
+
+<link href="css/Login.css" rel="stylesheet"/>
+<link href="css/ColourMenu.css" rel="stylesheet"/>
+
+<div id="LoginPanel">
+    <div id="LoginPanelHeader">
+        <img id="LoginPanelHeaderLogo" src="img/PlaceholderLogo.png" alt=""/>
+        <p id="LoginPanelHeaderTitle">Login Here</p>
+    </div>
+</div>
+
+<div id="ColourBlindnessButton" Menu="@ColourblindMenu" @onclick="ColourblindMenuToggle" @onmouseover="() => ButtonHoverSwitch(true)" @onmouseleave="() => ButtonHoverSwitch(false)">
+    <img class="ColourBlindnessIcon" src="img/Eye.png" alt="A Toggle for Showing Colourblind Options, Represented by an Eye." draggable="false"/>
+    <img class="ColourBlindnessIcon" src="img/Caret.png" alt="A Toggle for Showing Colourblind Options, Represented by an Eye." draggable="false"/>
+    
+    <div id="ColourblindMenu" @onclick:stopPropagation="true" @onmouseover:stopPropagation="true" @onmouseleave:stopPropagation="true">
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Standard</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(1)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Protanopia</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(2)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Protanomaly</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(3)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Deuteranopia</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(4)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Deuteranomaly</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(5)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Tritanopia</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(6)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Tritanomaly</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(7)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Achromatopsia</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(8)"></div>
+        </div>
+        <div class="ColourBlindnessWrapper">
+            <p class="ColourBlindnessText">Achromatomaly</p>
+            <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(9)"></div>
+        </div>
+    </div>
+</div>
+
+@if (ColourblindMenu)
+{
+    <style>
+        #ColourBlindnessButton {
+            right: 20vmin;
+        }
+        
+        #ColourBlindnessButton .ColourBlindnessIcon:nth-of-type(1) {
+            opacity: 0;
+        }
+        #ColourBlindnessButton .ColourBlindnessIcon:nth-of-type(2) {
+            opacity: 1;
+        }
+        
+        #ColourBlindnessButton > #ColourblindMenu {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+} else {
+    <style>
+        #ColourBlindnessButton .ColourBlindnessIcon:nth-of-type(1) {
+            opacity: 1;
+        }
+        #ColourBlindnessButton .ColourBlindnessIcon:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        #ColourBlindnessButton > #ColourblindMenu {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+}
+
+<style>
+    :root {
+        --Cool-Primary: @CoolPrimary;
+        --Cool-Secondary: @CoolSecondary;
+        --Warm-Primary: @WarmPrimary;
+        --Warm-Secondary: @WarmSecondary;
+    }
+    
+    .ColourBlindnessWrapper > .ColourBlindnessToggle {
+        background-color: var(--Cool-Secondary);
+    }
+    .ColourBlindnessWrapper:nth-of-type(@CurrentColourblindness) > .ColourBlindnessToggle {
+        background-color: var(--Warm-Primary);            
+    }
+</style>
+
+@if (CurrentColourblindness == 8)
+{
+    <style>
+        .ColourBlindnessWrapper:nth-of-type(@CurrentColourblindness) > .ColourBlindnessToggle {
+            background-color: white;         
+        }
+    </style>
+}
+
+@if (ButtonHover)
+{
+    <style>
+        #ColourBlindnessButton:hover {
+            background: var(--Warm-Primary);
+        }
+        #ColourBlindnessButton:hover .ColourBlindnessIcon:nth-of-type(1) {
+            opacity: 0.6;
+        }
+        #ColourBlindnessButton:hover .ColourBlindnessIcon:nth-of-type(2) {
+            opacity: 1;
+        }
+    </style>
+}
+
+@code {
+    bool ColourblindMenu;
+    bool ButtonHover;
+    string CoolPrimary = "var(--Cool-1, #30373e)";
+    string CoolSecondary = "var(--Cool-2, #779cab)";
+    string WarmPrimary = "var(--Warm-1, #ac7b84)";
+    string WarmSecondary = "var(--Warm-2, #b796ac)";
+    int CurrentColourblindness = 1;
+    
+    private void ColourblindMenuToggle()
+    {
+        ColourblindMenu = !ColourblindMenu;
+    }
+
+    private void ButtonHoverSwitch(bool Hover)
+    {
+        ButtonHover = Hover;
+    }
+}
