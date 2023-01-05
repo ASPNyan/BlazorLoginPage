@@ -1,7 +1,32 @@
 ﻿namespace BasicLoginPage.Pages;
+using Classes;
+using Classes.Cryptography;
+using Classes.Json;
 
-public partial class Login
+public partial class Main
 {
+    private Account User = Account.Empty();
+    private bool RegisterSuccess;
+    private bool LoginSuccess;
+
+    private void Login()
+    {
+        if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password)) return;
+        CheckPassword Check = CheckPassword.Check(Username, Password);
+        if (!Check.Success) return;
+        HashSaltPair HashSaltPair = Check.HashSaltPair;
+        User = new Account(Username, HashSaltPair.Hash, HashSaltPair.Salt);
+        LoginSuccess = AccountPage.Login(User);
+    }
+
+    private void Register()
+    {
+        if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password)) return;
+        HashSaltPair HashSaltPair = HashPassword.Hash(Password);
+        User = new Account(Username, HashSaltPair.Hash, HashSaltPair.Salt, true);
+        RegisterSuccess = AccountPage.Register(User);
+    }
+    
     private void ColourblindnessToggle(int Colourblindness)
     {
         CurrentColourblindness = Colourblindness;

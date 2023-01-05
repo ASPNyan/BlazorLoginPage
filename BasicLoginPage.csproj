@@ -12,8 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Pages\Login.cs">
-      <DependentUpon>Login.razor</DependentUpon>
+    <Compile Update="Pages\Main.cs">
+      <DependentUpon>Main.razor</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AccountPage.cs">
+      <DependentUpon>AccountPage.razor</DependentUpon>
     </Compile>
   </ItemGroup>
 

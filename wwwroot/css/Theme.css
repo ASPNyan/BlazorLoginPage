@@ -1,5 +1,11 @@
 ﻿/* Colour Definitions */
 :root {
+    --Warm-Primary: var(--Warm-1);
+    --Warm-Secondary: var(--Warm-2);
+    --Cool-Primary: var(--Cool-1);
+    --Cool-Secondary: var(--Cool-2);
+    
+    
     --Cool-1: #779cab;
     --Cool-2: #30373e;
     --Warm-1: #ac7b84;

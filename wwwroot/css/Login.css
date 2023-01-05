@@ -3,13 +3,6 @@
     overflow: hidden;
 }
 
-:root {
-    --Cool-Primary: var(--Cool-1, #30373e);
-    --Cool-Secondary: var(--Cool-2, #779cab);
-    --Warm-Primary: var(--Warm-1, #ac7b84);
-    --Warm-Secondary: var(--Warm-2, #e3406a);
-}
-
 #LoginPanel {
     position: absolute;
     aspect-ratio: 1.61803398875;
@@ -22,25 +15,28 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    transition: all 300ms ease-in-out;
 }
 
 #LoginPanel > #LoginPanelHeader {
     position: relative;
     width: 100%;
-    height: 15%;
+    height: 20%;
     border-radius: 3vmin 3vmin 0 0;
-    background: var(--Cool-Primary);
+    background: var(--Cool-Primary) linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, var(--Cool-Secondary));
     display: flex;
     flex-flow: row nowrap;
-    align-content: center;
+    transition: all 300ms ease-in-out;
 }
 
 #LoginPanelHeader > #LoginPanelHeaderLogo {
     position: absolute;
-    height: 90%;
+    height: 75%;
+    cursor: pointer;
     top: 5%;
     left: 1%;
     object-fit: scale-down;
+    transition: all 300ms ease-in-out;
 }
 
 #LoginPanelHeader > #LoginPanelHeaderTitle {
@@ -54,15 +50,82 @@
     margin-top: -3vmin;
     text-align: center;
     color: var(--Cool-Secondary);
-    transition: color 300ms ease-in-out;
+    transition: all 300ms ease-in-out, margin 0ms, top 0ms, left 0ms;
 }
 
 #LoginPanel > #LoginPanelMain {
     position: relative;
     width: 100%;
-    height: 75%;
-    background: var(--Warm-Secondary);
+    height: 70%;
+    background: var(--Cool-Secondary);
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
     align-content: center;
+    transition: all 300ms ease-in-out;
+    gap: 2vmin;
+}
+
+#LoginPanelMain > .InputBorder {
+    position: relative;
+    width: calc(80% + 1vmin);
+    height: 7vmin;
+    margin: 0 auto;
+    border-radius: 4vmin;
+    background: radial-gradient(circle at 50% 50%, var(--Cool-Primary) 0%, var(--Warm-Primary) 50%, var(--Warm-Secondary) 100%);
+    display: grid;
+    transition: all 300ms ease-in-out;
+}
+
+.InputBorder > .Input {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 1vmin);
+    height: 100%;
+    border-radius: inherit;
+    background: black;
+    transition: all 300ms ease-in-out;
+    color: white;
+    border: hidden;
+    outline: none;
+    padding: 0 0 0 1vmin;
+    font: calc(2vmin) "Rubik-Regular", sans-serif;
+    box-shadow: black 0 0 0 1px;
+}
+
+.InputBorder > .Input:active {
+    width: calc(100% - 2vmin);
+    height: 6vmin;
+    margin: 0.5vmin;
+    border-radius: 3vmin;
+}
+.InputBorder > .Input:focus {
+    width: calc(100% - 2vmin);
+    height: 6vmin;
+    margin: 0.5vmin;
+    border-radius: 3vmin;
+}
+
+#LoginPanelMain > .InputBorder > .Input::placeholder {
+    color: var(--Cool-Primary);
+    transition: all 300ms ease-in-out;
+}
+
+#LoginPanelMain > #InputButtons {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+    gap: 4vmin;
+    transition: all 300ms ease-in-out;
+}
+
+
+
+#LoginPanel > #LoginPanelFooter {
+    
 }

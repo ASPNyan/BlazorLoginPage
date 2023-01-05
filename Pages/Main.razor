@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager;
 
 <PageTitle>Login</PageTitle>
 
@@ -7,12 +8,20 @@
 
 <div id="LoginPanel">
     <div id="LoginPanelHeader">
-        <img id="LoginPanelHeaderLogo" src="img/PlaceholderLogo.png" alt=""/>
+        <img id="LoginPanelHeaderLogo" src="img/PlaceholderLogo.png" alt="" onclick="@NavToWebsite"/> <!-- This Placeholder Logo is from LogoIpsum, so that's where the onclick currently leads  -->
         <p id="LoginPanelHeaderTitle">Login Here</p>
+    </div>
+    <div id="LoginPanelMain">
+        <div class="InputBorder"><input type="text" placeholder="Username:" class="Input" @bind="Username" @oninput="Args => GetInput(Args, false)"/></div>
+        <div class="InputBorder"><input type="password" placeholder="Password:" class="Input" @bind="Password" @oninput="Args => GetInput(Args, true)"/></div>
+        <div id="InputButtons">
+            <div class="InputButton" @onclick="Login">Login</div>
+            <div class="InputButton" @onclick="Register">Register</div>
+        </div>
     </div>
 </div>
 
-<div id="ColourBlindnessButton" Menu="@ColourblindMenu" @onclick="ColourblindMenuToggle" @onmouseover="() => ButtonHoverSwitch(true)" @onmouseleave="() => ButtonHoverSwitch(false)">
+<div id="ColourBlindnessButton" Menu="@ColourblindMenu" @onclick="ColourblindMenuToggle" @onmouseover="ButtonHoverSwitch" @onmouseleave="ButtonHoverSwitch">
     <img class="ColourBlindnessIcon" src="img/Eye.png" alt="A Toggle for Showing Colourblind Options, Represented by an Eye." draggable="false"/>
     <img class="ColourBlindnessIcon" src="img/Caret.png" alt="A Toggle for Showing Colourblind Options, Represented by an Eye." draggable="false"/>
     
@@ -111,7 +120,7 @@
 {
     <style>
         .ColourBlindnessWrapper:nth-of-type(@CurrentColourblindness) > .ColourBlindnessToggle {
-            background-color: white;         
+            background-color: #DDD;
         }
     </style>
 }
@@ -139,14 +148,28 @@
     string WarmPrimary = "var(--Warm-1, #ac7b84)";
     string WarmSecondary = "var(--Warm-2, #b796ac)";
     int CurrentColourblindness = 1;
-    
+
     private void ColourblindMenuToggle()
     {
         ColourblindMenu = !ColourblindMenu;
     }
 
-    private void ButtonHoverSwitch(bool Hover)
+    private void ButtonHoverSwitch()
     {
-        ButtonHover = Hover;
+        ButtonHover = !ButtonHover;
+    }
+
+    private void NavToWebsite()
+    {
+        NavigationManager.NavigateTo("https://logoipsum.com/");
+    }
+    
+    string? Username = string.Empty;
+    string? Password = string.Empty;
+
+    private void GetInput(ChangeEventArgs Args, bool IsPassword)
+    {
+        if (IsPassword) Password = (string?)Args.Value;
+        else Username = (string?)Args.Value;
     }
 }
