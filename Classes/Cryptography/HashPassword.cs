@@ -21,7 +21,7 @@ public abstract class HashPassword
 
         try
         {
-            Rfc2898DeriveBytes Rfc = new(Password, Salt, Iterations);
+            Rfc2898DeriveBytes Rfc = new(Password, Salt, Iterations, HashAlgorithmName.SHA512);
             byte[] Hash = Rfc.GetBytes(64);
             HashedPassword = Rfc2898DeriveBytes.Pbkdf2(Hash, Salt, Iterations, HashAlgorithmName.SHA512, 1024);
         }
@@ -46,7 +46,7 @@ public abstract class HashPassword
 
         try
         {
-            Rfc2898DeriveBytes Rfc = new(Password, SaltBytes, Iterations);
+            Rfc2898DeriveBytes Rfc = new(Password, SaltBytes, Iterations, HashAlgorithmName.SHA512);
             byte[] Hash = Rfc.GetBytes(64);
             HashedPassword = Rfc2898DeriveBytes.Pbkdf2(Hash, SaltBytes, Iterations, HashAlgorithmName.SHA512, 1024);
         }

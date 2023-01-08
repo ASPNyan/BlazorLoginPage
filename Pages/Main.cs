@@ -7,23 +7,29 @@ public partial class Main
 {
     private Account User = Account.Empty();
     private bool RegisterSuccess;
+    private bool RegisterClick;
     private bool LoginSuccess;
+    private bool LoginClick;
 
     private void Login()
     {
+        LoginClick = true;
         if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password)) return;
         CheckPassword Check = CheckPassword.Check(Username, Password);
         if (!Check.Success) return;
         HashSaltPair HashSaltPair = Check.HashSaltPair;
         User = new Account(Username, HashSaltPair.Hash, HashSaltPair.Salt);
+        LoginClick = false;
         LoginSuccess = AccountPage.Login(User);
     }
 
     private void Register()
     {
+        RegisterClick = true;
         if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password)) return;
         HashSaltPair HashSaltPair = HashPassword.Hash(Password);
         User = new Account(Username, HashSaltPair.Hash, HashSaltPair.Salt, true);
+        RegisterClick = false;
         RegisterSuccess = AccountPage.Register(User);
     }
     

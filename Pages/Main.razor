@@ -3,7 +3,7 @@
 
 <PageTitle>Login</PageTitle>
 
-<link href="css/Login.css" rel="stylesheet"/>
+<link href="css/Main.css" rel="stylesheet"/>
 <link href="css/ColourMenu.css" rel="stylesheet"/>
 
 <div id="LoginPanel">
@@ -12,11 +12,17 @@
         <p id="LoginPanelHeaderTitle">Login Here</p>
     </div>
     <div id="LoginPanelMain">
-        <div class="InputBorder"><input type="text" placeholder="Username:" class="Input" @bind="Username" @oninput="Args => GetInput(Args, false)"/></div>
-        <div class="InputBorder"><input type="password" placeholder="Password:" class="Input" @bind="Password" @oninput="Args => GetInput(Args, true)"/></div>
+        <div id="InputWrapper">
+            <div class="InputBorder"><input type="text" placeholder="Username:" class="Input" @bind="Username" @oninput="Args => GetInput(Args, false)"/></div>
+            <div class="InputBorder"><input type="password" placeholder="Password:" class="Input" @bind="Password" @oninput="Args => GetInput(Args, true)"/></div>
+        </div>
         <div id="InputButtons">
-            <div class="InputButton" @onclick="Login">Login</div>
-            <div class="InputButton" @onclick="Register">Register</div>
+            <div class="InputButton" @onclick="Login">
+                <p class="InputButtonText">Login</p>
+            </div>
+            <div class="InputButton" @onclick="Register">
+                <p class="InputButtonText">Register</p>
+            </div>
         </div>
     </div>
 </div>
@@ -139,6 +145,17 @@
         }
     </style>
 }
+
+@if (LoginClick || RegisterClick)
+{
+    int Child = LoginClick ? 1 : 2;
+    <style>
+        #InputButtons:nth-child(@Child) .InputButton {
+            animation: InputButtonClick 800ms forwards;
+        }
+    </style>
+}
+
 
 @code {
     bool ColourblindMenu;

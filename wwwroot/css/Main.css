@@ -15,7 +15,7 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    transition: all 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
 }
 
 #LoginPanel > #LoginPanelHeader {
@@ -56,17 +56,28 @@
 #LoginPanel > #LoginPanelMain {
     position: relative;
     width: 100%;
-    height: 70%;
-    background: var(--Cool-Secondary);
+    height: 80%;
+    background: transparent;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
     transition: all 300ms ease-in-out;
-    gap: 2vmin;
 }
 
-#LoginPanelMain > .InputBorder {
+#LoginPanelMain > #InputWrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-content: center;
+    transition: all 300ms ease-in-out;
+    gap: 3vmin;
+}
+
+#InputWrapper > .InputBorder {
     position: relative;
     width: calc(80% + 1vmin);
     height: 7vmin;
@@ -100,6 +111,7 @@
     margin: 0.5vmin;
     border-radius: 3vmin;
 }
+
 .InputBorder > .Input:focus {
     width: calc(100% - 2vmin);
     height: 6vmin;
@@ -107,7 +119,7 @@
     border-radius: 3vmin;
 }
 
-#LoginPanelMain > .InputBorder > .Input::placeholder {
+.InputBorder > .Input::placeholder {
     color: var(--Cool-Primary);
     transition: all 300ms ease-in-out;
 }
@@ -120,11 +132,48 @@
     flex-flow: row nowrap;
     justify-content: center;
     align-content: center;
-    gap: 4vmin;
+    gap: 24vmin;
     transition: all 300ms ease-in-out;
 }
 
+#InputButtons > .InputButton {
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 1.61803398875;
+    background: var(--Cool-Primary);
+    border-radius: 2vmin;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transition: all 300ms ease-in-out;
+}
 
+@keyframes InputButtonClick {
+    from, to {
+        transform: scale(1);
+        background: var(--Cool-Primary);
+    }
+    
+    20% {
+        transform: scale(0.8);
+        background: var(--Warm-Primary);
+    }
+    
+    80% {
+        transform: scale(1.2);
+        background: var(--Warm-Secondary);
+    }
+}
+
+.InputButton > .InputButtonText {
+    position: absolute;
+    top: 50%;
+    margin-top: -2vmin;
+    height: 4vmin;
+    font: 3.5vmin "Rubik-Regular", sans-serif;
+    color: var(--Cool-Secondary);
+    transition: all 300ms ease-in-out;
+}
 
 #LoginPanel > #LoginPanelFooter {
     

@@ -1,4 +1,14 @@
-﻿/* Colour Definitions */
+﻿@font-face {
+    font-family: Rubik-Regular;
+    src: local('Rubik Regular'), local('Rubik-Regular'),
+    url('fonts/Rubik-Regular.woff2') format('woff2'),
+    url('fonts/Rubik-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Colour Definitions */
 :root {
     --Warm-Primary: var(--Warm-1);
     --Warm-Secondary: var(--Warm-2);
