@@ -150,8 +150,11 @@
 {
     int Child = LoginClick ? 1 : 2;
     <style>
-        #InputButtons:nth-child(@Child) .InputButton {
+        #InputButtons > .InputButton:nth-of-type(@Child) {
             animation: InputButtonClick 800ms forwards;
+        }
+        #InputButtons > .InputButton {
+            cursor: default;
         }
     </style>
 }
