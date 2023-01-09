@@ -1,0 +1,87 @@
+﻿#LoginLoadingWrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#LoginLoadingWrapper > #LoginLoadingPanel {
+    position: absolute;
+    pointer-events: none;
+    background: var(--Cool-Primary);
+    aspect-ratio: 1.61803398875;
+    width: 60vmin;
+    left: calc(50% - 30vmin);
+    top: calc(50% - 30vmin / 1.61803398875);
+    border-radius: 3vmin;
+}
+
+#LoginLoadingPanel > #LoadingTitle {
+    position: absolute;
+    width: 50%;
+    height: 6vmin;
+    font: calc(5vmin) "Rubik-Regular", sans-serif;
+    content: "Login Here";
+    margin-left: 25%;
+    margin-top: 1vmin;
+    text-align: center;
+    color: var(--Cool-Secondary);
+}
+
+#LoginLoadingPanel > #LoadingIcon {
+    display: inline-block;
+    position: relative;
+    width: 16vmin;
+    height: 16vmin;
+    left: calc(50% - 8vmin);
+    top: calc(50% - 8vmin);
+}
+
+#LoadingIcon > div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: calc(16vmin * 0.8);
+    height: calc(16vmin * 0.8);
+    margin: 1vmin;
+    border: 2vmin solid;
+    border-color: var(--Cool-Secondary) transparent transparent transparent;
+    border-radius: 50%;
+    animation: Loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+#LoadingIcon div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+#LoadingIcon div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+#LoadingIcon div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes Loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@Keyframes CheckmarkLower {
+    100% {
+        background-color: var(--Warm-Primary);
+        rotate: 45deg;
+    }
+}
+
+@Keyframes CheckmarkUpper {
+    
+}
+
+@Keyframes CheckmarkCircle {
+    
+}

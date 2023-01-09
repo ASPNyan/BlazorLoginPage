@@ -5,6 +5,7 @@
 
 <link href="css/Main.css" rel="stylesheet"/>
 <link href="css/ColourMenu.css" rel="stylesheet"/>
+<link href="css/LoadingPanel.css" rel="stylesheet"/>
 
 <div id="LoginPanel">
     <div id="LoginPanelHeader">
@@ -67,6 +68,18 @@
         <div class="ColourBlindnessWrapper">
             <p class="ColourBlindnessText">Achromatomaly</p>
             <div class="ColourBlindnessToggle" @onclick="() => ColourblindnessToggle(9)"></div>
+        </div>
+    </div>
+</div>
+
+<div id="LoginLoadingWrapper">
+    <div id="LoginLoadingPanel">
+        <p id="LoadingTitle">Loading..</p>
+        <div id="LoadingIcon">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
 </div>
@@ -155,6 +168,18 @@
         }
         #InputButtons > .InputButton {
             cursor: default;
+        }
+        
+        #LoginLoadingWrapper {
+            opacity: 1;
+            backdrop-filter: blur(18px);
+            pointer-events: auto;
+            transition: all 300ms ease-in-out;
+            transition-delay: 800ms;
+        }
+        #LoginLoadingWrapper > #LoginLoadingPanel {
+            opacity: 0.8;
+            pointer-events: auto;
         }
     </style>
 }
